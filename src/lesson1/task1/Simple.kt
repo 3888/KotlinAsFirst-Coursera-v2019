@@ -2,7 +2,9 @@
 
 package lesson1.task1
 
-import kotlin.math.*
+import kotlin.math.PI
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 /**
  * Пример
@@ -59,16 +61,20 @@ fun main() {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
+    return hours * 3600 + minutes * 60 + seconds
+}
 
 /**
  * Тривиальная
  *
  * Пользователь задает длину отрезка в саженях, аршинах и вершках (например, 8 саженей 2 аршина 11 вершков).
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
- * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
+ * 1 сажень = 3 аршина = 16 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
+    return (sagenes * 48 + arshins * 16 + vershoks) * 4.445 / 100
+}
 
 /**
  * Тривиальная
@@ -86,7 +92,10 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double {
  * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = TODO()
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double {
+//    d2= (х2— х1)2+ (y2— y1)2
+    return sqrt((x2 - x1).pow(2) + (y2 - y1).pow(2))
+}
 
 /**
  * Простая
