@@ -115,6 +115,7 @@ fun timeForHalfWay(
     for (i in 0..index) {
         halfTime += tArray[i]
     }
+
     halfTime -= (wayValue - s) / vArray[index]
 
     return halfTime
@@ -133,7 +134,23 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = TODO()
+): Int {
+    var danger = 0
+
+    if (kingX == rookX1 || kingY == rookY1) {
+        danger = 1
+    }
+
+    if (kingX == rookX2 || kingY == rookY2) {
+        danger = 2
+    }
+
+    if ((kingX == rookX1 || kingY == rookY1) && (kingX == rookX2 || kingY == rookY2)) {
+        danger = 3
+    }
+
+    return danger
+}
 
 /**
  * Простая
