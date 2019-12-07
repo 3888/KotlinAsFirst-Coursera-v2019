@@ -3,7 +3,10 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.sqr
+import kotlin.math.abs
 import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sqrt
 
 /**
@@ -21,7 +24,7 @@ fun quadraticRootNumber(a: Double, b: Double, c: Double): Int {
 }
 
 /**
- * Пример
+ * Пример +
  *
  * Получить строковую нотацию для оценки по пятибалльной системе
  */
@@ -58,7 +61,7 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
 }
 
 /**
- * Простая
+ * Простая +
  *
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
@@ -81,7 +84,7 @@ fun ageDescription(age: Int): String {
 
 
 /**
- * Простая
+ * Простая +
  *
  * Путник двигался t1 часов со скоростью v1 км/час, затем t2 часов — со скоростью v2 км/час
  * и t3 часов — со скоростью v3 км/час.
@@ -122,7 +125,7 @@ fun timeForHalfWay(
 }
 
 /**
- * Простая
+ * Простая +
  *
  * Нa шахматной доске стоят черный король и две белые ладьи (ладья бьет по горизонтали и вертикали).
  * Определить, не находится ли король под боем, а если есть угроза, то от кого именно.
@@ -153,7 +156,7 @@ fun whichRookThreatens(
 }
 
 /**
- * Простая
+ * Простая -
  *
  * На шахматной доске стоят черный король и белые ладья и слон
  * (ладья бьет по горизонтали и вертикали, слон — по диагоналям).
@@ -166,24 +169,68 @@ fun rookOrBishopThreatens(
     kingX: Int, kingY: Int,
     rookX: Int, rookY: Int,
     bishopX: Int, bishopY: Int
-): Int = TODO()
+): Int = when {
+    (abs(kingX - bishopX) == abs(kingY - bishopY)) && (kingX == rookX || kingY == rookY) -> 3
+    kingX == rookX || kingY == rookY -> 1
+    abs(kingX - bishopX) == abs(kingY - bishopY) -> 2
+    else -> 0
+}
+//{
+//    var res = 0
+//    var danger = 0
+//
+//    if (abs(kingX - bishopX) == abs(kingY - bishopY)) {
+//        danger = 2
+//    }
+//    if (kingX == rookX || kingY == rookY) {
+//        danger = 1
+//    }
+//
+//    if ((abs(kingX - bishopX) == abs(kingY - bishopY)) && (kingX == rookX || kingY == rookY)) {
+//        danger = 3
+//    }
+//    return danger
+//}
 
 /**
- * Простая
+ * Простая +
  *
  * Треугольник задан длинами своих сторон a, b, c.
  * Проверить, является ли данный треугольник остроугольным (вернуть 0),
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    val sidesArray = arrayOf(a, b, c)
+    sidesArray.sort()
+
+    val sideA = sidesArray[0]
+    val sideB = sidesArray[1]
+    val sideC = sidesArray[2]
+
+    var triangleType = 0
+
+    when {
+        sideA + sideB <= sideC -> triangleType = -1 // Triangle inequality
+        sqr(sideA) + sqr(sideB) > sqr(sideC) -> triangleType = 0
+        sqr(sideA) + sqr(sideB) == sqr(sideC) -> triangleType = 1 // Pythagorean theorem
+        sqr(sideA) + sqr(sideB) < sqr(sideC) -> triangleType = 2
+    }
+
+    return triangleType
+}
 
 /**
- * Средняя
+ * Средняя -
  *
  * Даны четыре точки на одной прямой: A, B, C и D.
  * Координаты точек a, b, c, d соответственно, b >= a, d >= c.
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    return when {
+        c > b || d < a -> -1
+        else -> abs (max(a,c) - min(b,d))
+    }
+}
