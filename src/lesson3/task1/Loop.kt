@@ -2,6 +2,7 @@
 
 package lesson3.task1
 
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 /**
@@ -12,7 +13,7 @@ import kotlin.math.sqrt
 fun factorial(n: Int): Double {
     var result = 1.0
     for (i in 1..n) {
-        result = result * i // Please do not fix in master
+        result *= i
     }
     return result
 }
@@ -70,12 +71,23 @@ fun digitCountInNumber(n: Int, m: Int): Int =
 fun digitNumber(n: Int): Int = TODO()
 
 /**
- * Простая
+ * Простая +
  *
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+
+//https://tproger.ru/problems/finding-fibonacci/
+fun fib(n: Int): Int {
+    val sqrt5 = sqrt(5.0)
+    val phi = (sqrt5 + 1) / 2
+
+    return ((phi.pow(n.toDouble())) / sqrt5 + 0.5).toInt()
+}
+//
+//fun fib(n: Int): Int =
+//    if (n <= 2) 1
+//    else fib(n - 2) + fib(n - 1)
 
 /**
  * Простая
@@ -100,13 +112,25 @@ fun minDivisor(n: Int): Int = TODO()
 fun maxDivisor(n: Int): Int = TODO()
 
 /**
- * Простая
+ * Простая +
  *
  * Определить, являются ли два заданных числа m и n взаимно простыми.
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+
+//https://habr.com/ru/sandbox/60131/
+fun isCoPrime(m: Int, n: Int): Boolean {
+    var a = m
+    var b = n
+
+    while (b != 0) {
+        val tmp = a % b;
+        a = b;
+        b = tmp;
+    }
+    return a == 1;
+}
 
 /**
  * Простая
