@@ -95,7 +95,11 @@ fun fib(n: Int): Int {
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int = TODO()
+fun lcm(a: Long, b: Long): Long {
+    fun gcd(a: Long, b: Long): Long = if (b == 0L) a else gcd(b, a % b)
+
+    return a / gcd(a, b) * b
+}
 
 /**
  * Простая
