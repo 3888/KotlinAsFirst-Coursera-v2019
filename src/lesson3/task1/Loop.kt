@@ -2,8 +2,7 @@
 
 package lesson3.task1
 
-import kotlin.math.pow
-import kotlin.math.sqrt
+import kotlin.math.*
 
 /**
  * Пример
@@ -68,7 +67,18 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    var count = 1
+    var value = n
+
+    if (value == 0) return 1
+
+    while (value / 10 > 0) {
+        value /= 10
+        count++
+    }
+    return count
+}
 
 /**
  * Простая +
